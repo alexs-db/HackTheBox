@@ -1,0 +1,31 @@
+# HTTP Requests
+
+In the previous section, we found out that the `secret.js` main function is sending an empty POST request to `/serial.php`. In this section, we will attempt to do the same using cURL to send a POST request to `/serial.php`. To learn more about cURL and web requests, you can check out the Web Requests module.
+
+## cURL
+
+cURL is a powerful command-line tool used in Linux distributions, macOS, and even the latest Windows PowerShell versions. We can request any website by simply providing its URL, and we would get it in text-format:
+
+```bash
+alexsdb@htb[/htb]$ curl http://SERVER_IP:PORT/
+```
+
+This returns the HTML source code of the target website, including the same HTML we went through when we checked the source code in the first section.
+
+## POST Request
+
+To send a POST request, we should add the `-X POST` flag to our command:
+
+```bash
+alexsdb@htb[/htb]$ curl -s http://SERVER_IP:PORT/ -X POST
+```
+
+> **Tip:** We add the `-s` flag to reduce cluttering the response with unnecessary data.
+
+However, POST requests usually contain POST data. To send data, use the `-d "param1=sample"` flag:
+
+```bash
+alexsdb@htb[/htb]$ curl -s http://SERVER_IP:PORT/ -X POST -d "param1=sample"
+```
+
+Now that we know how to use cURL to send basic POST requests, in the next section, we will utilize this to replicate what `server.js` is doing to understand its purpose better.
